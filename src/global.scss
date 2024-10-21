@@ -34,4 +34,13 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+@import "@ionic/angular/css/palettes/high-contrast.css";
+
+ion-card {
+  background: #ffffffe0;
+}
+
+ion-fab.action-bottom-fab {
+  margin-bottom: 8px;
+  margin-right: 4px;
+}

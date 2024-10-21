@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Budget</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">budget</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-list lines="none">
+      @for (budget of budgets$ | async; track budget.id) {
+        <ion-item>
+          <ion-icon [name]="budget.icon"></ion-icon>
+          <ion-label>{{ budget.label }} - {{ budget.amount }}€</ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  </ion-card>
+
+  <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

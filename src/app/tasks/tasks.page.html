@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tâches</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">tasks</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-checkbox>01/12/2024 - Acheter et envoyer des invitations aux invités</ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox>01/01/2025 - Acheter des accessoires pour le banquet et la cérémonie</ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox>07/02/2025 - Louer une voiture</ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

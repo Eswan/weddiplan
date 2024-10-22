@@ -23,22 +23,16 @@
 
   <ion-card>
     <ion-list lines="none">
-      <ion-item>
-        <ion-checkbox>01/12/2024 - Acheter et envoyer des invitations aux invités</ion-checkbox>
-      </ion-item>
-
-      <ion-item>
-        <ion-checkbox>01/01/2025 - Acheter des accessoires pour le banquet et la cérémonie</ion-checkbox>
-      </ion-item>
-
-      <ion-item>
-        <ion-checkbox>07/02/2025 - Louer une voiture</ion-checkbox>
-      </ion-item>
+      @for (task of tasks$ | async; track task.id) {
+        <ion-item (press)="editTask(task)">
+          <ion-checkbox [checked]="task.done">{{ task.label }}</ion-checkbox>
+        </ion-item>
+      }
     </ion-list>
   </ion-card>
 
   <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button>
+    <ion-fab-button (tap)="addTask()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

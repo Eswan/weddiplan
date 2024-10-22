@@ -13,4 +13,23 @@
       font-weight: bold;
     }
   }
+
+  ion-card.total-guests {
+    display: flex;
+    align-items: center;
+
+    .adults, .children {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 6px;
+    }
+
+    .children {
+      i {
+        margin-right: 4px;
+        margin-left: 4px;
+      }
+    }
+  }
 }

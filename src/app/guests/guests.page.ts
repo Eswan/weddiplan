@@ -38,14 +38,14 @@ export class GuestsPage {
     const result = await modal.onWillDismiss();
 
     if (result?.data) {
-      const budgetUpdated: Guest = {
+      const guestUpdated: Guest = {
         id: result.data.id,
         name: result.data.name,
         adults: result.data.adults,
         children: result.data.children
       };
 
-      this.guestService.updateguest(budgetUpdated);
+      this.guestService.updateguest(guestUpdated);
     }
   }
 
@@ -58,14 +58,14 @@ export class GuestsPage {
     const result = await modal.onWillDismiss();
 
     if (result?.data) {
-      const newBudget: Guest = {
+      const newGuest: Guest = {
         id: Math.random() * 10000 + '',
         name: result.data.name,
         adults: 1,
         children: 0
       };
 
-      this.guestService.addguest(newBudget);
+      this.guestService.addguest(newGuest);
     }
   }
 }

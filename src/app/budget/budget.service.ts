@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, shareReplay, skip } from 'rxjs';
 import { Budget } from './budget';
+import { StorageService } from '../shared/services/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
-  private budgets$: BehaviorSubject<Budget[]> = new BehaviorSubject([{
-    id: '1',
-    label: 'Location de voiture',
-    icon: 'car-sport-outline',
-    amount: 700
-  }, {
-    id: '2',
-    label: 'Fleurs',
-    icon: 'rose-outline',
-    amount: 400
-  }, {
-    id: '3',
-    label: 'Nourriture',
-    icon: 'fast-food-outline',
-    amount: 2000
-  }, {
-    id: '4',
-    label: 'Robe',
-    icon: 'woman-outline',
-    amount: 400
-  }]);
+  private budgets$: BehaviorSubject<Budget[]> = new BehaviorSubject<Budget[]>([]);
 
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.storageService.getP<Budget[]>('budgets').then((budgets) => {
+      if (!!budgets) {
+        this.budgets$.next(budgets);
+      }
+
+      this.budgets$.pipe(
+        skip(1)
+      ).subscribe((budgets) => {
+        this.storageService.set('budgets', budgets);
+      })
+    });
+  }
 
   getBudgets(): Observable<Budget[]> {
     return this.budgets$;
+  }
+
+  getCount(): Observable<number> {
+    return this.budgets$.pipe(
+      map((budgets) => budgets.reduce((acc, curr) => acc + curr.amount, 0)),
+      shareReplay()
+    );
   }
 
   addBudget(newBudget: Budget): void {

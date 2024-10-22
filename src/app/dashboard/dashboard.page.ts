@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GuestsService } from '../guests/guests.service';
+import { BudgetService } from '../budget/budget.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,10 @@ export class DashboardPage {
     adults: number
   }>
 
-  constructor(private guestService: GuestsService) {
+  totalBudget$: Observable<number>;
+
+  constructor(private guestService: GuestsService, private budgetService: BudgetService) {
     this.totalGuests$ = this.guestService.getCounts();
+    this.totalBudget$ = this.budgetService.getCount();
   }
 }

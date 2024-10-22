@@ -16,21 +16,28 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-input labelPlacement="stacked"
-               label="Libellé"
-               [(ngModel)]="label"
-               placeholder="Ex : Traiteur">
-    </ion-input>
-  </ion-item>
-  <ion-item class="ion-margin-top">
-    <ion-input labelPlacement="stacked"
-               label="Montant (en €)"
-               type="number"
-               [(ngModel)]="amount"
-               placeholder="Veuillez saisir un montant">
-    </ion-input>
-  </ion-item>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-input formControlName="label" labelPlacement="stacked" label="Libellé" placeholder="Ex : Traiteur">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="amount" labelPlacement="stacked" label="Montant (en €)" type="number"
+                 placeholder="Veuillez saisir un montant">
+<!--        <div *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched">-->
+<!--          <div *ngIf="form.get('amount')?.errors?.['required']">-->
+<!--            Le montant est obligatoire-->
+<!--          </div>-->
+<!--          <div *ngIf="form.get('amount')?.errors?.['min']">-->
+<!--            Le montant doit être supérieur ou égal à 0-->
+<!--          </div>-->
+<!--          <div *ngIf="form.get('amount')?.errors?.['max']">-->
+<!--            Le montant ne peut pas dépasser 99999-->
+<!--          </div>-->
+<!--        </div>-->
+      </ion-input>
+    </ion-item>
+  </form>
 
   <ion-label class="select-icon-label">Sélectionnez une icone (optionnel)</ion-label>
   <div class="icon-list">

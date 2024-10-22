@@ -17,10 +17,7 @@ export class BudgetPage {
   constructor(private budgetService: BudgetService,
               private modalCtrl: ModalController) {
     this.budgets$ = this.budgetService.getBudgets();
-    this.totalBudget$ = this.budgets$.pipe(
-      map((budgets) => budgets.reduce((acc, curr) => acc + curr.amount, 0)),
-      shareReplay()
-    );
+    this.totalBudget$ = this.budgetService.getCount();
   }
 
   public async editBudget(budget: Budget): Promise<void> {
@@ -56,6 +53,8 @@ export class BudgetPage {
     modal.present();
 
     const result = await modal.onWillDismiss();
+
+    console.log(result);
 
     if (result?.data) {
       const newBudget: Budget = {

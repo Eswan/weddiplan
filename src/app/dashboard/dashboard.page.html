@@ -20,9 +20,9 @@
     <ion-label>22j 18h 17min 23s</ion-label>
   </ion-card>
   <ion-card class="ion-padding">
-    <ion-label>Budget : 5400€</ion-label>
+    <ion-label>Budget : {{ totalBudget$ | async }}€</ion-label>
   </ion-card>
-  <ion-card class="ion-padding">
+  <ion-card class="ion-padding total-guests">
     <ion-label>Total d'invités :</ion-label>
     @if (totalGuests$ | async; as totalGuests) {
       <span class="adults">

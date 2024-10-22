@@ -1,34 +1,27 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, map, Observable, shareReplay, skip } from 'rxjs';
 import { Guest } from './guest';
+import { Budget } from '../budget/budget';
+import { StorageService } from '../shared/services/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuestsService {
-  private guests$: BehaviorSubject<Guest[]> = new BehaviorSubject([{
-    id: '1',
-    name: 'Patricia',
-    adults: 2,
-    children: 0
-  }, {
-    id: '2',
-    name: 'Paulo',
-    adults: 2,
-    children: 0
-  }, {
-    id: '3',
-    name: 'Claudio',
-    adults: 2,
-    children: 2
-  }, {
-    id: '4',
-    name: 'Florent & Solenne',
-    adults: 2,
-    children: 1
-  }]);
+  private guests$: BehaviorSubject<Guest[]> = new BehaviorSubject([] as Guest[]);
 
-  constructor() {
+  constructor(private storageService: StorageService) {
+    this.storageService.getP<Guest[]>('guests').then((guests) => {
+      if (!!guests) {
+        this.guests$.next(guests);
+      }
+
+      this.guests$.pipe(
+        skip(1)
+      ).subscribe((guests) => {
+        this.storageService.set('guests', guests);
+      })
+    });
   }
 
   getguests(): Observable<Guest[]> {

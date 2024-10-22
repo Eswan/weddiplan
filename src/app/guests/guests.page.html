@@ -1,13 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+
     <ion-title>Invités</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">guests</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-list class="guest-list" lines="none">
+      @for (guest of guests$ | async; track guest.id) {
+        <ion-item (press)="editGuest(guest)">
+          <ion-label>{{ guest.name }}</ion-label>
+          <div class="adults_children">
+            <span class="adults">
+              <i class="material-icons">person</i>{{ guest.adults }}
+            </span>
+            @if (guest.children) {
+              <span class="children">
+                <i class="material-icons">child_care</i>{{ guest.children }}
+              </span>
+            }
+          </div>
+        </ion-item>
+      }
+    </ion-list>
+  </ion-card>
+
+  @if (totalGuests$ | async; as totalGuests) {
+    <ion-card class="total">
+      Total d'invités :
+      <span class="adults">
+        <i class="material-icons">person</i>{{ totalGuests.adults }}
+      </span>
+      @if (totalGuests.children) {
+        <span class="children">
+          <i class="material-icons">child_care</i>{{ totalGuests.children }}
+        </span>
+      }
+    </ion-card>
+  }
+
+  <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (tap)="addGuest()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (tap)="cancel()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ isEditMode ? 'Modifier invités' : 'Ajouter invités' }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (tap)="confirm()">
+        <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input labelPlacement="stacked"
+               label="Nom"
+               [(ngModel)]="name"
+               placeholder="Ex : Tonton">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input labelPlacement="stacked"
+               label="Nombre d'adultes"
+               type="number"
+               [(ngModel)]="adults">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input labelPlacement="stacked"
+               label="Nombre d'enfants"
+               type="number"
+               [(ngModel)]="children">
+    </ion-input>
+  </ion-item>
+
+  @if (isEditMode) {
+    <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button id="confirm-delete-alert">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-alert
+      trigger="confirm-delete-alert"
+      header="Confirmer la suppression ?"
+      [buttons]="deleteConfirmButtons"
+    >
+    </ion-alert>
+  }
+</ion-content>

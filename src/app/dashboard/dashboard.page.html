@@ -1,13 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Accueil</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Dashboard</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="timer-card">
+    <img src="../../assets/background/sablier.png" alt="">
+    <ion-label>22j 18h 17min 23s</ion-label>
+  </ion-card>
+  <ion-card class="ion-padding">
+    <ion-label>Budget : 5400€</ion-label>
+  </ion-card>
+  <ion-card class="ion-padding">
+    <ion-label>Total d'invités :</ion-label>
+    @if (totalGuests$ | async; as totalGuests) {
+      <span class="adults">
+          <i class="material-icons">person</i>{{ totalGuests.adults }}
+        </span>
+      @if (totalGuests.children) {
+        <span class="children">
+          <i class="material-icons">child_care</i>{{ totalGuests.children }}
+        </span>
+      }
+    }
+  </ion-card>
 </ion-content>

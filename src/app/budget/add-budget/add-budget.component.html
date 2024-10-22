@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (tap)="cancel()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ isEditMode ? 'Modifier dépense' : 'Nouvelle dépense' }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (tap)="confirm()">
+        <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input labelPlacement="stacked"
+               label="Libellé"
+               [(ngModel)]="label"
+               placeholder="Ex : Traiteur">
+    </ion-input>
+  </ion-item>
+  <ion-item class="ion-margin-top">
+    <ion-input labelPlacement="stacked"
+               label="Montant (en €)"
+               type="number"
+               [(ngModel)]="amount"
+               placeholder="Veuillez saisir un montant">
+    </ion-input>
+  </ion-item>
+
+  <ion-label class="select-icon-label">Sélectionnez une icone (optionnel)</ion-label>
+  <div class="icon-list">
+    @for (icon of icons; track icon) {
+      <ion-button [color]="selectedIcon === icon ? 'primary' : 'secondary'" shape="round" (tap)="selectIcon(icon)">
+        <ion-icon slot="icon-only" [name]="icon"></ion-icon>
+      </ion-button>
+    }
+  </div>
+
+  @if (isEditMode) {
+    <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button id="confirm-delete-alert">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-alert
+      trigger="confirm-delete-alert"
+      header="Confirmer la suppression ?"
+      [buttons]="deleteConfirmButtons"
+    >
+    </ion-alert>
+  }
+</ion-content>

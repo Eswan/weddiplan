@@ -1,18 +1,29 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 :root {
-  --ion-background-color: transparent;
-  --ion-toolbar-background: #aadad6;
-  --ion-tab-bar-background: #aadad6;
+  // CUSTOM VARIABLES
+  --card-border-radius: 4px;
 
-  --ion-color-primary: #d7abab;
+  // ION THEME OVERRIDED VARIABLES
+  --color: #737373;
+  --ion-item-color: #737373;
+  --ion-tab-bar-color-selected: var(--clr-primary-300);
+  --ion-toolbar-color: #595959;
+
+  --ion-background-color: transparent;
+  --ion-toolbar-background: var(--clr-secondary);
+  --ion-tab-bar-background: var(--clr-secondary);
+  --ion-overlay-background-color: #fff;
+
+  // ION THEME DEFAULT VARIABLES
+  --ion-color-primary: var(--clr-primary);
   --ion-color-primary-rgb: 244,194,194;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 0,0,0;
   --ion-color-primary-shade: #d7abab;
   --ion-color-primary-tint: #f5c8c8;
 
-  --ion-color-secondary: #A1D6D1;
+  --ion-color-secondary: var(--clr-secondary);
   --ion-color-secondary-rgb: 161,214,209;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 0,0,0;
@@ -67,4 +78,28 @@
   --ion-color-dark-contrast-rgb: 255,255,255;
   --ion-color-dark-shade: #5a5a5a;
   --ion-color-dark-tint: #757575;
+
+  // PALETTE
+  --clr-primary-50: #f8eff0;
+  --clr-primary-100: #efd7d9;
+  --clr-primary-200: #d7abab;
+  --clr-primary: var(--clr-primary-200);
+  --clr-primary-300: #cc8b8a;
+  --clr-primary-400: #dd716b;
+  --clr-primary-500: #e56355;
+  --clr-primary-600: #d75c52;
+  --clr-primary-700: #c5534b;
+  --clr-primary-800: #b94c44;
+  --clr-primary-900: #ab4339;
+  --clr-secondary-50: #d9eeed;
+  --clr-secondary-100: #a1d6d1;
+  --clr-secondary: var(--clr-secondary-100);
+  --clr-secondary-200: #64bbb2;
+  --clr-secondary-300: #19a094;
+  --clr-secondary-400: #008c7f;
+  --clr-secondary-500: #00796a;
+  --clr-secondary-600: #006d5e;
+  --clr-secondary-700: #005e4f;
+  --clr-secondary-800: #004f41;
+  --clr-secondary-900: #003527;
 }

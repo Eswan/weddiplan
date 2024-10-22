@@ -1,0 +1,16 @@
+:host {
+  .timer-card {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 150px;
+    }
+
+    ion-label {
+      margin-left: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { GuestsPageRoutingModule } from './guests-routing.module';
 
 import { GuestsPage } from './guests.page';
+import { AddGuestComponent } from './add-guest/add-guest.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { GuestsPage } from './guests.page';
     IonicModule,
     GuestsPageRoutingModule
   ],
-  declarations: [GuestsPage]
+  declarations: [GuestsPage, AddGuestComponent]
 })
 export class GuestsPageModule {}

@@ -1,0 +1,43 @@
+:host {
+  ion-list.guest-list {
+    .adults_children {
+      display: flex;
+      align-items: center;
+
+      .adults {
+        display: flex;
+        align-items: center;
+      }
+      .children {
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      i {
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .total {
+    padding: 10px;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 225px;
+
+    .adults, .children {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 6px;
+    }
+  }
+}

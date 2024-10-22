@@ -1,6 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+
     <ion-title>Budget</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,18 +22,23 @@
   </ion-header>
 
   <ion-card>
-    <ion-list lines="none">
+    <ion-list class="budget-list" lines="none">
       @for (budget of budgets$ | async; track budget.id) {
-        <ion-item>
+        <ion-item (press)="editBudget(budget)">
           <ion-icon [name]="budget.icon"></ion-icon>
-          <ion-label>{{ budget.label }} - {{ budget.amount }}€</ion-label>
+          <ion-label>{{ budget.label }}</ion-label>
+          <div class="amount">{{ budget.amount }}€</div>
         </ion-item>
       }
     </ion-list>
   </ion-card>
 
+  <ion-card class="total-budget">
+    Budget total : {{ totalBudget$ | async }}€
+  </ion-card>
+
   <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button>
+    <ion-fab-button (tap)="addBudget()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

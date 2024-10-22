@@ -36,8 +36,23 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/high-contrast.css";
 
+html {
+  body {
+    color: var(--color);
+  }
+}
+
+.item-native {
+  color: var(--color);
+}
+
+ion-modal {
+  --ion-background-color: #fff;
+}
+
 ion-card {
-  background: #ffffffe0;
+  background: rgb(255 255 255 / 94%);
+  border-radius: var(--card-border-radius);
 }
 
 ion-fab.action-bottom-fab {

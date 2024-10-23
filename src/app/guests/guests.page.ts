@@ -4,11 +4,12 @@ import { map, Observable, shareReplay } from 'rxjs';
 import { GuestsService } from './guests.service';
 import { Guest } from './guest';
 import { AddGuestComponent } from './add-guest/add-guest.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guests',
   templateUrl: './guests.page.html',
-  styleUrls: ['./guests.page.scss']
+  styleUrls: ['./guests.page.scss'],
 })
 export class GuestsPage {
   public guests$: Observable<Guest[]>;
@@ -18,7 +19,8 @@ export class GuestsPage {
   }>
 
   constructor(private guestService: GuestsService,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private router: Router) {
     this.guests$ = this.guestService.getguests();
     this.totalGuests$ = this.guestService.getCounts();
   }
@@ -30,7 +32,11 @@ export class GuestsPage {
         id: guest.id,
         name: guest.name,
         adults: guest.adults,
-        children: guest.children
+        children: guest.children,
+        status: guest.status,
+        email: guest.email,
+        phone: guest.phone,
+        address: guest.address,
       }
     });
     modal.present();
@@ -42,7 +48,11 @@ export class GuestsPage {
         id: result.data.id,
         name: result.data.name,
         adults: result.data.adults,
-        children: result.data.children
+        children: result.data.children,
+        status: result.data.status,
+        email: result.data.email,
+        phone: result.data.phone,
+        address: result.data.address,
       };
 
       this.guestService.updateguest(guestUpdated);
@@ -61,11 +71,19 @@ export class GuestsPage {
       const newGuest: Guest = {
         id: Math.random() * 10000 + '',
         name: result.data.name,
-        adults: 1,
-        children: 0
+        adults: result.data.adults,
+        children: result.data.children,
+        status: result.data.status,
+        email: result.data.email,
+        phone: result.data.phone,
+        address: result.data.address,
       };
 
       this.guestService.addguest(newGuest);
     }
+  }
+
+  goToStats() {
+    this.router.navigate(['guests/stats'])
   }
 }

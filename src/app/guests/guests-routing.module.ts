@@ -2,11 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { GuestsPage } from './guests.page';
+import { GuestsStatsComponent } from './guests-stats/guests-stats.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GuestsPage
+    children: [{
+      path: '',
+      component: GuestsPage
+    }, {
+      path: 'stats',
+      component: GuestsStatsComponent
+    }]
   }
 ];
 

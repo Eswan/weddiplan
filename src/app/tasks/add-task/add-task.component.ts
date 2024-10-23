@@ -42,7 +42,7 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit() {
     this.isEditMode = !!this.id;
-    this.form.setValue({ name: this.label, adults: this.done });
+    this.form.patchValue({ label: this.label, adults: this.done });
   }
 
   cancel() {
@@ -56,7 +56,7 @@ export class AddTaskComponent implements OnInit {
     }
     return this.modalCtrl.dismiss({
       id: this.id,
-      name: this.form.get('name')?.value,
+      label: this.form.get('label')?.value,
       done: this.done
     }, 'confirm');
   }

@@ -8,6 +8,8 @@ import { GuestsPageRoutingModule } from './guests-routing.module';
 
 import { GuestsPage } from './guests.page';
 import { AddGuestComponent } from './add-guest/add-guest.component';
+import { GuestsStatsComponent } from './guests-stats/guests-stats.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   imports: [
@@ -15,8 +17,9 @@ import { AddGuestComponent } from './add-guest/add-guest.component';
     FormsModule,
     IonicModule,
     GuestsPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule
   ],
-  declarations: [GuestsPage, AddGuestComponent]
+  declarations: [GuestsPage, AddGuestComponent, GuestsStatsComponent]
 })
 export class GuestsPageModule {}

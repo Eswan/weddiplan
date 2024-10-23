@@ -15,21 +15,44 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tasks</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-card>
-    <ion-list lines="none">
-      @for (task of tasks$ | async; track task.id) {
-        <ion-item (press)="editTask(task)">
-          <ion-checkbox [checked]="task.done">{{ task.label }}</ion-checkbox>
-        </ion-item>
-      }
-    </ion-list>
-  </ion-card>
+  <div class="accordion-container">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Novembre 2024</mat-panel-title>
+          <mat-panel-description class="warn">3/7</mat-panel-description>
+        </mat-expansion-panel-header>
+        @if (tasks$ | async; as tasks) {
+          @if (tasks.length > 0) {
+            @for (task of tasks; track task.id) {
+              <ion-checkbox [checked]="task.done">
+                <span class="date">21/09/2025</span>
+                <span class="label">{{ task.label }}</span>
+              </ion-checkbox>
+            }
+          }
+        }
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Décembre 2024</mat-panel-title>
+          <mat-panel-description class="warn">3/7</mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Janvier 2025</mat-panel-title>
+          <mat-panel-description class="success">2/2</mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Février 2025</mat-panel-title>
+          <mat-panel-description class="warn">2/3</mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 
   <ion-fab class="action-bottom-fab" slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (tap)="addTask()">

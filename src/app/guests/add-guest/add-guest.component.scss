@@ -8,6 +8,26 @@
     display: flex;
   }
 
+  ion-item.status {
+    ion-radio-group {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: start;
+      padding: 10px 0;
+
+      > .item {
+        display: flex;
+        flex: 1;
+        align-items: center;
+
+        > ion-label {
+          padding: 10px 10px;
+        }
+      }
+    }
+  }
+
   .icon-list {
     display: grid;
     grid-template-columns: repeat(6, 1fr);

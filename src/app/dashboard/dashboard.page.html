@@ -16,23 +16,53 @@
 
 <ion-content [fullscreen]="true">
   <ion-card class="timer-card">
-    <img src="../../assets/background/sablier.png" alt="">
-    <ion-label>22j 18h 17min 23s</ion-label>
+    <img src="../../assets/background/sablier4.png" alt="">
+    @if (marriageCountdown$ | async; as marriageCountdown) {
+      <div class="countdown">
+        <div class="col">
+          <div class="value">{{ marriageCountdown.days }}</div>
+          <div class="label">jours</div>
+        </div>
+        <div class="col">
+          <div class="value">{{ marriageCountdown.hours }}</div>
+          <div class="label">heures</div>
+        </div>
+        <div class="col">
+          <div class="value">{{ marriageCountdown.minutes }}</div>
+          <div class="label">min</div>
+        </div>
+        <div class="col">
+          <div class="value">{{ marriageCountdown.seconds }}</div>
+          <div class="label">s</div>
+        </div>
+      </div>
+    }
   </ion-card>
-  <ion-card class="ion-padding">
-    <ion-label>Budget : {{ totalBudget$ | async }}€</ion-label>
+
+  <ion-card class="budget ion-padding">
+    <div class="title">Budget total : {{ totalBudget$ | async }}€</div>
+    <div class="chart-container">
+      <div class="chart" [chart]="chartBudgetBase"></div>
+      <div class="chart" [chart]="chartBudgetByCategory"></div>
+    </div>
   </ion-card>
+
   <ion-card class="ion-padding total-guests">
-    <ion-label>Total d'invités :</ion-label>
-    @if (totalGuests$ | async; as totalGuests) {
-      <span class="adults">
+    <div>Total d'invités :</div>
+    <div>
+      @if (totalGuests$ | async; as totalGuests) {
+        <span class="adults">
           <i class="material-icons">person</i>{{ totalGuests.adults }}
         </span>
-      @if (totalGuests.children) {
-        <span class="children">
-          <i class="material-icons">child_care</i>{{ totalGuests.children }}
-        </span>
+        @if (totalGuests.children) {
+          <span class="children">
+            <i class="material-icons">child_care</i>{{ totalGuests.children }}
+          </span>
+        }
       }
-    }
+    </div>
+    <div class="chart-container">
+      <div class="chart" [chart]="chartGuests"></div>
+    </div>
   </ion-card>
 </ion-content>

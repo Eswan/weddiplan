@@ -17,6 +17,19 @@
 </ion-header>
 <ion-content class="ion-padding">
   <form [formGroup]="form">
+    <ion-item lines="none" class="status">
+      <ion-segment formControlName="status" mode="ios">
+        <ion-segment-button mode="ios" [value]="STATUS.CONFIRMED">
+          <ion-label>Confirmé</ion-label>
+        </ion-segment-button>
+        <ion-segment-button mode="ios" [value]="STATUS.PENDING">
+          <ion-label>En attente</ion-label>
+        </ion-segment-button>
+        <ion-segment-button mode="ios" [value]="STATUS.CANCELLED">
+          <ion-label>Décliné</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
     <ion-item>
       <ion-input labelPlacement="stacked"
                  label="Nom"
@@ -46,6 +59,49 @@
                  max="20">
       </ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="stacked"
+                 label="E-mail"
+                 type="email"
+                 formControlName="email"
+                 maxlength="200">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="stacked"
+                 label="Téléphone"
+                 type="tel"
+                 formControlName="phone">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="stacked"
+                 label="Adresse"
+                 type="string"
+                 formControlName="address"
+                 maxlength="200">
+      </ion-input>
+    </ion-item>
+
+<!--    <ion-item class="status">-->
+<!--      <ion-radio-group formControlName="status">-->
+<!--        <div class="item">-->
+<!--          <ion-radio [value]="STATUS.CONFIRMED"></ion-radio>-->
+<!--          <ion-label>Confirmée</ion-label>-->
+<!--        </div>-->
+<!--        <div class="item">-->
+<!--          <ion-radio [value]="STATUS.PENDING"></ion-radio>-->
+<!--          <ion-label>En attente</ion-label>-->
+<!--        </div>-->
+<!--        <div class="item">-->
+<!--          <ion-radio [value]="STATUS.CANCELLED"></ion-radio>-->
+<!--          <ion-label>Décliné</ion-label>-->
+<!--        </div>-->
+<!--      </ion-radio-group>-->
+<!--    </ion-item>-->
   </form>
 
   @if (isEditMode) {

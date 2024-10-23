@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Task } from '../tasks/task';
 import { BehaviorSubject, Observable, skip } from 'rxjs';
 import { StorageService } from '../shared/services/storage';
@@ -13,6 +13,7 @@ import { AddTaskComponent } from '../tasks/add-task/add-task.component';
 })
 export class TasksPage {
   public tasks$: Observable<Task[]>;
+  readonly panelOpenState = signal(false);
 
   constructor(private taskService: TasksService,
               private modalCtrl: ModalController) {

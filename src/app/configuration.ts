@@ -11,9 +11,11 @@ export interface Configuration {
     him: Person;
   };
   icons: string[];
+  marriageDate: string;
 }
 
 const configuration: Configuration = {
+  marriageDate: '2025-08-14',
   married: {
     her: {
       firstName: 'Ana',

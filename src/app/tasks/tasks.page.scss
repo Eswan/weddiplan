@@ -1,0 +1,48 @@
+:host {
+  ion-content {
+    .accordion-container {
+      margin: 10px;
+
+      .mat-expansion-panel-header-description {
+        flex: 0;
+
+        &.warn {
+          color: #e59d19;
+        }
+
+        &.success {
+          color: #00d100;
+        }
+      }
+
+      ion-checkbox {
+        width: 100%;
+
+        + ion-checkbox {
+          margin-top: 10px;
+        }
+
+        .date {
+          font-weight: bold;
+        }
+
+        .label {
+          margin-left: 10px;
+        }
+      }
+    }
+    ion-card.month-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .label {
+        font-weight: bold;
+      }
+
+      .task-counter {
+
+      }
+    }
+  }
+}

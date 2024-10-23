@@ -53,7 +53,7 @@ export class AddBudgetComponent implements OnInit {
 
   ngOnInit() {
     this.isEditMode = !!this.id;
-    this.form.setValue({ label: this.label, amount: this.amount, icon: this.selectedIcon });
+    this.form.patchValue({ label: this.label, amount: this.amount, icon: this.selectedIcon });
   }
 
   cancel() {
